@@ -12,10 +12,7 @@ This Python code implements a product recommendation system using collaborative 
 4. KNN Model:
    The `NearestNeighbors` model from `sklearn` is used to perform collaborative filtering based on cosine similarity. It’s trained on the sparse matrix of user-product ratings.
 
-5. Fallback Popular Products:
-   The most popular products (those with the most ratings) are identified in case the KNN model doesn’t generate valid recommendations.
-
-6. Recommendation Function:
-   The `recommend_real_time()` function takes a user ID and returns product recommendations. It finds the nearest neighbors (most similar users) and suggests products based on these similarities. If no valid recommendations are found, it defaults to popular products.
+5. Recommendation Function:
+   The `recommend_real_time()` function takes a user ID and returns product recommendations. It finds the nearest neighbors (most similar users) and suggests products based on these similarities.
 
 Finally, it prints out the recommended products for a randomly chosen user.
