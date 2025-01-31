@@ -1,18 +1,29 @@
-This Python code implements a product recommendation system using collaborative filtering with K-Nearest Neighbors (KNN). Here's a step-by-step breakdown:
+This Python script implements a **collaborative filtering-based recommendation system** using K-Nearest Neighbors (KNN) on the **Amazon Product Review dataset**. The goal is to recommend products to users based on their past interactions.  
 
-1. Data Loading and Preprocessing: 
-   The dataset `ratings_Beauty.csv` is loaded into a Pandas DataFrame. The columns `Timestamp` is dropped, and the `Rating` column is converted to numeric values. Any invalid ratings (non-numeric) are removed.
+Step-by-Step Explanation:
+1. Load and Preprocess Data:  
+   - The dataset (`ratings_Beauty.csv`) is loaded into a Pandas DataFrame.  
+   - The unnecessary `Timestamp` column is dropped.  
+   - The `Rating` column is converted to numeric values, and invalid ratings are removed.  
 
-2. Mapping User and Product IDs: 
-   The user and product IDs are mapped to numerical indices for easier handling in the matrix. This is done using Python's `enumerate()` function to create mappings for both users and products.
+2. Mapping Users and Products:
+   - Users and products are mapped to numerical indices using Python's `enumerate()` function to create **user_map** and **product_map**.  
+   - These mappings help in transforming the dataset into a sparse matrix format.  
 
-3. **Sparse Matrix Creation**:
-   A sparse matrix is created using `csr_matrix` to represent the user-product interactions, with ratings as values. This matrix is used as input for the KNN algorithm.
+3. Creating a Sparse Matrix:
+   - A sparse **User-Product Interaction matrix** is created using `csr_matrix`.  
+   - The matrix stores only nonzero rating values, making it efficient for large datasets.  
 
-4. KNN Model:
-   The `NearestNeighbors` model from `sklearn` is used to perform collaborative filtering based on cosine similarity. It’s trained on the sparse matrix of user-product ratings.
+4. Training the KNN Model:
+   - The `NearestNeighbors` model from `sklearn` is trained using **cosine similarity** to find similar users.  
 
-5. Recommendation Function:
-   The `recommend_real_time()` function takes a user ID and returns product recommendations. It finds the nearest neighbors (most similar users) and suggests products based on these similarities.
+5. Generating Recommendations:  
+   - The function `recommend_real_time()` retrieves the nearest neighbors for a given user.  
+   - Recommended product indices are converted back to **original ProductIDs** using a **reverse mapping**.  
+   - If no recommendations are found, it falls back to the **most popular products** based on rating counts.  
 
-Finally, it prints out the recommended products for a randomly chosen user.
+6. Example Usage:  
+   - The script selects a **random user** and recommends products.  
+   - The recommended product list is printed as output.  
+
+This approach efficiently suggests relevant Amazon products using collaborative filtering. 
